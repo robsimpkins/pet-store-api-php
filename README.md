@@ -14,10 +14,18 @@ Develop an API for a pet store using a microservices architecture. The API requi
 
 1. Generate and set an `APP_KEY` in the `.env` file:
 
+       # Linux
+       appKey=$(openssl rand -hex 32); sed -i "s/APP_KEY=/APP_KEY=${appKey}/" ./src/.env
+
+       # MacOS
        appKey=$(openssl rand -hex 32); sed -i '' -e "s/APP_KEY=/APP_KEY=${appKey}/" ./src/.env
 
 1. Generate and set an `API_KEY` in the `.env` file:
 
+       # Linux
+       apiKey=$(openssl rand -hex 32); sed -i "s/API_KEY=/API_KEY=${apiKey}/" ./src/.env
+
+       # MacOS
        apiKey=$(openssl rand -hex 32); sed -i '' -e "s/API_KEY=/API_KEY=${apiKey}/" ./src/.env
 
 1. Build the Docker images:
@@ -32,11 +40,7 @@ Develop an API for a pet store using a microservices architecture. The API requi
 
        docker-compose exec php composer install
 
-1. The Docker containers created can be accessed as follows:
-
-   - **nginx** - `http://localhost:8080`
-   - **mysql** - `http://localhost:3306`
-   - **php** - `http://localhost:9000`
+1. The microservice API can be accessed on `localhost:8080` and the MySQL database can be accessed on `localhost:3306`.
 
 # Credit
 -   The Dockerfile and docker-compose implementation used where copied from this [Github repository](https://github.com/aschmelyun/docker-compose-laravel) and [Medium article](https://medium.com/@aschmelyun/the-beauty-of-docker-for-local-laravel-development-b5eb6caf0946) by @aschmelyun.
